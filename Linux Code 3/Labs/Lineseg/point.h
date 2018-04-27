@@ -27,6 +27,7 @@
   #include <string>
   #include <sstream>
   #include <iomanip>
+  #include <cassert>
 
   class Point
   {
@@ -82,9 +83,10 @@
 
   std::string Point::tostring()
   {
-    std::stringstream ss;
+    std::ostringstream ss;
     std::string str;
-    ss << setiosflags(ios::fixed | ios::showpoint) << setprecision(2);
+    ss.setf(std::ios::showpoint | std::ios::fixed);
+    ss << std::setprecision(2);
     ss << "(" << myX << "," << myY << ")";
 
     str = ss.str();

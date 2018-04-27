@@ -16,10 +16,11 @@ int main()
   first.setx(8);
   first.sety(22);
   Point second(1,3);
-  second.tostring;
-  first.tostring;
+  cout << "First point " << first.tostring();
+  cout << "\nSecond point " << second.tostring();
   
   LineSeg line(first, second);
-  cout << slope << endl;
+  cout << "\nSlope of the line is " << line.slope() << endl;
 
+  return 0;
 }
