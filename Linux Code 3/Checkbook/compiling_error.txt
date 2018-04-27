@@ -1,0 +1,55 @@
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:14:27: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double fee[3] = {10, 0, 5};  //Current check = 0, savings = 1
+                           ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:15:30: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double min[3] = { 0, 150, 0 };
+                              ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:16:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double interest[3] = { 0, .004 , 0};
+                                    ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:17:31: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double checkF[3] = {.50, 0, 0};
+                               ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:14:27: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11
+  double fee[3] = {10, 0, 5};  //Current check = 0, savings = 1
+                           ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:15:30: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11
+  double min[3] = { 0, 150, 0 };
+                              ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:16:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11
+  double interest[3] = { 0, .004 , 0};
+                                    ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:17:31: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11
+  double checkF[3] = {.50, 0, 0};
+                               ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:20:17: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double start = 0;   //For finding the starting balance
+                 ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:22:30: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  int index[4] = { 0, 0, 0, 0 }; //Index for each of the different value calls
+                              ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:23:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totD = 0; //Total of Deposits
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:24:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totC = 0; //Total of Checks
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:25:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totS = 0; //Total of Insuficient Funds
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:26:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totI = 0; //Total of interest
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:27:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totW = 0; //Total of Wired Transactions
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:28:16: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  double totF = 0;
+                ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:22:30: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11
+  int index[4] = { 0, 0, 0, 0 }; //Index for each of the different value calls
+                              ^
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp: In function ‘int main()’:
+/media/lapec/369A-810E/Linux Code 3/Checkbook/CheckBook.cpp:69:15: error: ‘system’ was not declared in this scope
+   system("CLS");
+               ^
