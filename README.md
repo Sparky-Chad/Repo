@@ -1,3 +1,2 @@
 # Repo
-This will be a cool read me
-code made from other projects
+Contains Repository Code for Computer Programming 3 class
