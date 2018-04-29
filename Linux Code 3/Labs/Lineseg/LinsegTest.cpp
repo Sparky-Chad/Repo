@@ -20,7 +20,10 @@ int main()
   cout << "\nSecond point " << second.tostring();
   
   LineSeg line(first, second);
-  cout << "\nSlope of the line is " << line.slope() << endl;
+  cout << line.tostring();
+  char blank;
+  cout << "Press enter to leave";
+  cin >> blank;
 
   return 0;
 }

@@ -11,9 +11,11 @@
 #ifndef _LINESEG_H
 #define _LINESEG_H
 
+#include <iostream>
 #include <string> //for string
 #include <sstream> //output stringstream
 #include <cmath> //for math functions
+#include <iomanip>
 #include "point.h"
 using namespace std;
 
@@ -34,8 +36,9 @@ public:
   string tostring();
 
   //Public members
-  Point fpoint;
-  Point spoint;
+  Point fpoint; //first point
+  Point spoint; //second point
+  Point temp; //made to use the other point functions on it
 };
 
   LineSeg::LineSeg(Point first, Point second)
@@ -79,5 +82,21 @@ public:
     double midy = (slope()/2) * fpoint.gety();
     Point mid(midx, midy);
     return mid;
+  }
+  string LineSeg::tostring() 
+  {
+    ostringstream ss;
+    string str;
+
+    ss << setiosflags(ios::fixed | ios::showpoint) << setprecision(2);
+    ss << "Points are " << fpoint.tostring() << " and " << spoint.tostring() << endl;
+    ss << "Line slope is " << slope() << endl;
+    ss << "Line distance is " << dist() << endl;
+    temp = yint();
+    ss << "Y-intercept is " << temp.tostring() << endl;
+    temp = xint();
+    ss << "X-intercept is " << temp.tostring() << endl;
+    temp = midpoint();
+    ss << "Midpoint is " << temp.tostring() << endl;
   }
 #endif
