@@ -87,7 +87,7 @@
     std::string str;
     ss.setf(std::ios::showpoint | std::ios::fixed);
     ss << std::setprecision(2);
-    ss << "(" << myX << "," << myY << ")";
+    ss << "( " << myX << ", " << myY << ")";
 
     str = ss.str();
     return str;

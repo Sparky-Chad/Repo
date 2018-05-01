@@ -12,6 +12,7 @@ using namespace std;
 
 int main()
 {
+  double tempx, tempy;
   Point first;
   first.setx(8);
   first.sety(22);
@@ -22,8 +23,6 @@ int main()
   LineSeg line(first, second);
   cout << line.tostring();
   char blank;
-  cout << "Press enter to leave";
-  cin >> blank;
 
   return 0;
 }

@@ -11,6 +11,8 @@
 #ifndef _LINESEG_H
 #define _LINESEG_H
 
+#define PI 3.141592654
+
 #include <iostream>
 #include <string> //for string
 #include <sstream> //output stringstream
@@ -32,6 +34,7 @@ public:
   Point midpoint(); //returns the midpoint of the line
   double dist();  //returns the distance of the segment
   Point xint();   //returns the x intercept
+  double argument();
 
   string tostring();
 
@@ -83,6 +86,14 @@ public:
     Point mid(midx, midy);
     return mid;
   }
+  double LineSeg::argument() 
+  {
+    double xdist = spoint.getx() - fpoint.getx();
+    double ydist = spoint.gety() - fpoint.gety();
+    return ((atan((ydist / xdist)) * 180)/PI);
+
+  }
+
   string LineSeg::tostring() 
   {
     ostringstream ss;
@@ -98,5 +109,9 @@ public:
     ss << "X-intercept is " << temp.tostring() << endl;
     temp = midpoint();
     ss << "Midpoint is " << temp.tostring() << endl;
+    ss << "The Argument is " << argument() << " degrees" << endl;
+    str = ss.str();
+
+    return str;
   }
 #endif
