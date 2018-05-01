@@ -21,7 +21,7 @@
 #include "point.h"
 using namespace std;
 
-class LineSeg 
+class LineSeg
 {
 public:
   //Class constructors
@@ -35,6 +35,10 @@ public:
   double dist();  //returns the distance of the segment
   Point xint();   //returns the x intercept
   double argument();
+  double xdist();
+  double ydist();
+  string yform();
+  string pointslope();
 
   string tostring();
 
@@ -52,17 +56,17 @@ public:
 
   double LineSeg::slope()
   {
-    double s = (fpoint.gety()+spoint.gety()) / (fpoint.getx()+spoint.getx()); //gets the line segment
+    double s = (spoint.gety()-fpoint.gety()) / (spoint.getx()-fpoint.getx()); //gets the line segment
+    int bleh = int(s * 100);
+    s = bleh / 100;
     return s;
   }
-  double LineSeg::dist() 
+  double LineSeg::dist()
   {
-    double xdist = fpoint.getx() - spoint.getx();
-    double ydist = fpoint.gety() - spoint.gety();
-    return (sqrt((xdist * xdist)+(ydist * ydist)));  //Pythag
+    return (sqrt((xdist() * xdist())+(ydist() * ydist())));  //Pythag
 
   }
-  Point LineSeg::yint() 
+  Point LineSeg::yint()
   {
     Point out(0, 0);
     double b = fpoint.gety() - (slope() * fpoint.getx()); //y = mx + b to b = y - mx
@@ -79,22 +83,50 @@ public:
     out.sety(0);
     return out; //return xint
   }
-  Point LineSeg::midpoint() 
+  Point LineSeg::midpoint()
   {
     double midx = (slope()/2) * fpoint.getx();
     double midy = (slope()/2) * fpoint.gety();
     Point mid(midx, midy);
     return mid;
   }
-  double LineSeg::argument() 
+  double LineSeg::argument()
   {
-    double xdist = spoint.getx() - fpoint.getx();
-    double ydist = spoint.gety() - fpoint.gety();
-    return ((atan((ydist / xdist)) * 180)/PI);
+
+
+    return ((atan((ydist() / xdist())) * 180)/PI);
 
   }
+  double LineSeg::xdist()
+  {
+    return spoint.getx() - fpoint.getx();
+  }
+  double LineSeg::ydist()
+  {
+    return spoint.gety() - fpoint.gety();
+  }
+  string  LineSeg::yform()
+  {
+    ostringstream ss;
+    string str;
+    temp = yint();
+    ss << "Y = " << slope() << "x + " << temp.gety();
 
-  string LineSeg::tostring() 
+    str = ss.str();
+    return str;
+  }
+  string LineSeg::pointslope()
+  {
+    ostringstream ss;
+    string str;
+    ss << "(Y - Y1) = " << slope() << "(X - X1)";
+
+    str = ss.str();
+    return str;
+  }
+
+
+  string LineSeg::tostring()
   {
     ostringstream ss;
     string str;
@@ -110,6 +142,8 @@ public:
     temp = midpoint();
     ss << "Midpoint is " << temp.tostring() << endl;
     ss << "The Argument is " << argument() << " degrees" << endl;
+    ss << "\nY-intercept form is " << yform() << endl;
+    ss << "The point-slope form is " << pointslope() << endl;
     str = ss.str();
 
     return str;

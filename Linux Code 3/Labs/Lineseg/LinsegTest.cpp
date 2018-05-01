@@ -14,15 +14,19 @@ int main()
 {
   double tempx, tempy;
   Point first;
-  first.setx(8);
-  first.sety(22);
-  Point second(1,3);
+
+  cout << "First point x,y: ";
+  cin >> tempx >> tempy;
+  first.setx(tempx);
+  first.sety(tempy);
+  cout << "second point x,y: ";
+  cin >> tempx >> tempy;
+  Point second(tempx, tempy);
   cout << "First point " << first.tostring();
-  cout << "\nSecond point " << second.tostring();
-  
+  cout << "\nSecond point " << second.tostring() << endl;
+
   LineSeg line(first, second);
   cout << line.tostring();
-  char blank;
 
   return 0;
 }
