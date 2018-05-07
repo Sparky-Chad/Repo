@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ public:
 	void instring(string in); //will find what the comp num is from a string
 	string tostring(); //return the compnum in string
 
+	double mag();
+	double angle();
 
 	//Manipulation classes
 	Compnum conjugate(); //returns the conjugate of this compnum
@@ -37,6 +40,8 @@ public:
 	Compnum add(Compnum in);
 	Compnum subtract(Compnum in);
 	Compnum multiply(Compnum in);
+	Compnum powers(int r);
+	Compnum root(int r);
 
 private:
 	double realnum;
@@ -113,7 +118,17 @@ void Compnum::instring(string in)
 	real >> realnum;
 }//end string to Compnum
 
+double Compnum::mag()	//gets the magnitude of the complex number
+{
+	return sqrt(realnum * realnum) + (imagnum * imagnum);
+}
+double Compnum::angle()
+{
+	double arg = imagnum / realnum;
+	return atan(arg);
+}
 //returning manipulated Compnums
+
 Compnum Compnum::add(Compnum in)	//Adds two Compnums
 {
 	double tR = 0, iR = 0;
@@ -156,6 +171,26 @@ Compnum Compnum::divide(Compnum in)
 	Compnum temp(tR, tI);
 	return temp;
 }
+Compnum Compnum::powers(int r) //will find the root of the complex number
+{
+	double length = pow(mag(), r);
+	double argument = angle() * r;
+
+	double real = cos(argument) * length;
+	double imag = sin(argument) * length;
+	Compnum temp(real, imag);
+	return temp;
+}
+Compnum Compnum::root(int r) //will find the root of the complex number
+{
+	double length = pow(mag(), 1/r);
+	double argument = angle() / r;
+
+	double real = cos(argument) * length;
+	double imag = sin(argument) * length;
+	Compnum temp(real, imag);
+	return temp;
+}
 
 //Outputs
 string Compnum::tostring()
@@ -174,6 +209,7 @@ string Compnum::tostring()
 	str = ss.str();
 	return str;
 }
+
 
 
 
