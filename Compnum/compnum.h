@@ -21,6 +21,7 @@ public:
 	Compnum(); //Default constructor
 	Compnum(double real, double imag); //Fill constructor
 	Compnum(string compstr); //Fill constructor with string
+	Compnum(const Compnum &in);
 
 	void setreal(double in);	//Will set the real number
 	double getreal(); //Returns the real number
@@ -62,6 +63,11 @@ Compnum::Compnum(double real, double imag)
 Compnum::Compnum(string compstr)
 {
 	instring(compstr);
+}
+Compnum::Compnum(const Compnum &in)
+{
+	realnum = in.realnum;
+	imagnum = in.imagnum;
 }
 
 //Private data manipulation, gets and sets
