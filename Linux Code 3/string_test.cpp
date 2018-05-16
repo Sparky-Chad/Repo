@@ -9,13 +9,15 @@ int main()
 {
   for(int i = 0; i < 3; i++)
   {
-    string in1, in2;
+    string *in = new string[2];
     cout << "first one: ";
-    cin >> in1;
+    cin >> in[0];
     cout << "second one: ";
-    cin >> in2;
+    cin >> in[1];
 
-    if(in1 == in2) cout << "\nworks";
-  }
+    if(in[0] == in[1]) cout << "\nworks\n";
+    cout << in[0] << " " << in[1] << endl;
+    cout << &in[0] << " " << &in[1] <<endl;
+   }
   return 0;
 }
