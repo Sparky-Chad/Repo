@@ -14,11 +14,11 @@
 #include "randgen.h"  //for random get word
 
 using namespace std;
-class dic
+class Dictionary
 {
 public:
-  dic();            //default constructor and will use default path to file Dic.txt
-  dic(string path); //fill constructor with an inputed path to file
+  Dictionary();            //default constructor and will use default path to file Dic.txt
+  Dictionary(string path); //fill constructor with an inputed path to file
 
   //private data manip functions
   void setword();
@@ -58,19 +58,19 @@ private:
   //limit as to how far you are allowed to move in the section
 };
 //Constructors*************************************************
-dic::dic()
+Dictionary::Dictionary()
 {
   mypath = "Dic.txt"; //the default path to call from
   setword();      //a default call from normall path
 }
-dic::dic(string path)
+Dictionary::Dictionary(string path)
 {
   mypath = path;  //changed path variable created
   setword();      //sets the dictionary as with this path
 }
 
 //Private Data Manip******************************************
-void dic::setword() //-------------------------------------------------setword
+void Dictionary::setword() //-------------------------------------------------setword
 {
   ifstream ifile(mypath); //opens the file
   string temp = "";       //temp string for use passing the string array
@@ -98,27 +98,27 @@ void dic::setword() //-------------------------------------------------setword
     cout << "**File Fail**";
   }
 }//end set word
-string dic::getword(int i) //---------------------------------------------getword
+string Dictionary::getword(int i) //---------------------------------------------getword
 {
   //cout << "returning word " << myword[i] << endl;
   return myword[i];
 }
-string dic::getword()     //---------------------------------------------getword - random
+string Dictionary::getword()     //---------------------------------------------getword - random
 {
   RandGen r;
   int randman = r.RandInt(w);
   //cout << "returning random word " << myword[randman] << endl;
   return myword[randman];
 }
-void dic::setpath(string in)  //-----------------------------------------setpath
+void Dictionary::setpath(string in)  //-----------------------------------------setpath
 {
   mypath = in;
 }
-string dic::getpath()   //------------------------------------------------getpath
+string Dictionary::getpath()   //------------------------------------------------getpath
 {
   return mypath;
 }
-void dic::setlimitray(string in) //-------------------------------------------setlimitray(string)
+void Dictionary::setlimitray(string in) //-------------------------------------------setlimitray(string)
 {
   int i = 0;  //constant index int
   limit = 0;
@@ -138,7 +138,7 @@ void dic::setlimitray(string in) //-------------------------------------------se
   }
   cout.flush();
 }//end set limitray
-string dic::getlimitstring(int i) //------------------------------------------getlimitstring
+string Dictionary::getlimitstring(int i) //------------------------------------------getlimitstring
 {
   if(inlimit(i))
   {
@@ -148,7 +148,7 @@ string dic::getlimitstring(int i) //------------------------------------------ge
   else return "fail";
 }
 //member functions*******************************************************
-bool dic::equalletters(int i, string in) //---------------------------------------equalletters
+bool Dictionary::equalletters(int i, string in) //---------------------------------------equalletters
 {
   if(myword[i].length() == in.length()) //rechecks if lengths are equal
   {
@@ -168,12 +168,12 @@ bool dic::equalletters(int i, string in) //-------------------------------------
   }
   return false; //if nothing else just return false
 } //end equal letters
-bool dic::equal(int i, string in) //-------------------------------------------equal`
+bool Dictionary::equal(int i, string in) //-------------------------------------------equal`
 {
   if(myword[i] == in) return true;
   else return false;
 }
-bool dic::inlimit(int i)  //---------------------------------------------------inlimit
+bool Dictionary::inlimit(int i)  //---------------------------------------------------inlimit
 {
   if(i < limit) {
     return true;

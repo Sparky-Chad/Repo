@@ -11,7 +11,7 @@ void pause();
 
 int main()
 {
-  dic d;
+  Dictionary d;
   for (int i = 25; i < 256; i++)
   {
     cout << d.getword(i) << endl;
