@@ -19,5 +19,8 @@ int main()
     cout << in[0] << " " << in[1] << endl;
     cout << &in[0] << " " << &in[1] <<endl;
    }
+   string str = "12345678";
+   string sub = str.substr(str.length() - 4, 4);
+   cout << sub << endl;
   return 0;
 }

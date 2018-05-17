@@ -37,7 +37,7 @@ public:
   //returns a string from inside the limits of the array, uses less resources as smaller portion to look through
 
   //member functions
-  bool equalletters(int, string);
+  //bool equalletters(int, string);
   //will check to see if an inputed string is the same as the one being checked
   bool equal(int, string);
   //Will check whether two strings, one inputed are the same or not
@@ -148,6 +148,7 @@ string Dictionary::getlimitstring(int i) //-------------------------------------
   else return "fail";
 }
 //member functions*******************************************************
+/* Isn't needed
 bool Dictionary::equalletters(int i, string in) //---------------------------------------equalletters
 {
   if(myword[i].length() == in.length()) //rechecks if lengths are equal
@@ -163,11 +164,11 @@ bool Dictionary::equalletters(int i, string in) //------------------------------
       hm[0] += int(cur[0][i]);  //gets the int values of the characters
       hm[1] += int(cur[1][i]);
     }
-    if(hm[0] == hm[1]) return true; //if the chars are the same the numbers sshould be equal
+    if(hm[0] == hm[1]) return true; //if the chars are the same the numbers should be equal
     else return false;
   }
   return false; //if nothing else just return false
-} //end equal letters
+} //end equal letters */
 bool Dictionary::equal(int i, string in) //-------------------------------------------equal`
 {
   if(myword[i] == in) return true;
