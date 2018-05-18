@@ -14,14 +14,14 @@ public:
     //will pause till user hits enter
 };
 
-static void Util::clear()
+void Util::clear()
 {
     for(int i = 0; i < 1000; i++)
     {
         std::cout << "\n";
     }
 }
-static void Util::pause()
+void Util::pause()
 {
     std::cout << "Press Enter to Continue: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
