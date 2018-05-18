@@ -41,7 +41,7 @@ public:
     //member functions
     void initialize();
     //Initializes the scramble game
-    bool main();
+    int main();
     //main running of the game
     bool insame();
     //checks if the inword characters matches some chars from the other
@@ -99,6 +99,7 @@ int Scramble::gettemppoint()    //----------------------------------gettemppoint
 //member functions
 bool Scramble::insame()   //----------------------------------------insame
 {
+    resettemppoint();
     if(inword <= myscramword)
     {
         int innercountchar = 0;
@@ -145,7 +146,7 @@ void Scramble::initialize() //----------------------------Initialize
     cout << "\n\nGood Luck!!!";
     Util::pause();
 }
-bool Scramble::main()   //*******************************MAIN
+int Scramble::main()   //*******************************MAIN
 {
     Util::clear();
     string temp = p.getplayername();    //display info
@@ -159,6 +160,34 @@ bool Scramble::main()   //*******************************MAIN
         cout << "Chose a word: ";
         getline(cin, inword);
         cout << "\n\n";
-        end = insame();
-    }
+        if(insame())    //If any of the characters are the same
+        {
+            int charsa = temppoint / p.getdefaultpoint();   //display stakes
+            cout << "You matched " << charsa << " characters with the scrambled word\n" << 
+                    "You will recieve " << temppoint << " points if you match a word\n";
+            myd.setlimitray(inword);
+            for(int i = 0; myd.inlimit(i) && !end; i++)
+            {
+                if(inword == myd.getlimitstring(i)) //if any of the words in the temp string match you get the points
+                {
+                    end = true;
+                    p.addpoint(temppoint);
+                }//end if
+            }//end inword checker with limit
+            if(!end)    //this displays out the user missed the word
+            {
+                cout << "\nThe word was not found in the dictionary";
+                Util::pause();
+            }
+            resettemppoint();   //just good data management
+        }//end the if chars are same
+        else 
+        {
+            cout << "\nA character must match the scrambled word";
+            Util::pause();  //make sure the user sees the above
+        }
+        
+        Util::clear();
+    }//end while doesn't end
+    return 1;
 }

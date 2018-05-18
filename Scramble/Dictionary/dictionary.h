@@ -122,15 +122,14 @@ void Dictionary::setlimitray(string in) //--------------------------------------
 {
   int i = 0;  //constant index int
   limit = 0;
-  string fin = in.substr(0, 1);
-  while(fin != myword[i].substr(0,1))
+  while(in[0] != myword[i][0])
   {
     cout << "no " << myword[i] << endl;
     i++;
 
   }
   point = i;
-  while(fin == myword[i].substr(0, 1))
+  while(in[0] == myword[i][0])
   {
     cout << "yes " << myword[i] << endl;
     limit++;

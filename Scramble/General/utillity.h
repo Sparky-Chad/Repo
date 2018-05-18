@@ -23,6 +23,6 @@ void Util::clear()
 }
 void Util::pause()
 {
-    std::cout << "Press Enter to Continue: ";
+    std::cout << "\n\nPress Enter to Continue: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
