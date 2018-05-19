@@ -37,11 +37,13 @@ public:
     //resetstemp point
     int gettemppoint();
     //returns the temp point
+    int gettempscore();
+    //returns the average score the user has, does not overide actual score
 
     //member functions
     void initialize();
     //Initializes the scramble game
-    int main();
+    void main();
     //main running of the game
     bool insame();
     //checks if the inword characters matches some chars from the other
@@ -51,6 +53,7 @@ private:
     string myscramword;
     string inword;
     int temppoint;
+    int myroundnum;
 };
 
 //Constructors
@@ -95,8 +98,14 @@ int Scramble::gettemppoint()    //----------------------------------gettemppoint
 {
     return temppoint;
 }
+int Scramble::gettempscore()    //----------------------------------gettempscore
+{
+    resettemppoint();
+    temppoint = p.getpoint() / myroundnum;
+    return temppoint;
+}
 
-//member functions
+//member functions **********************************************************
 bool Scramble::insame()   //----------------------------------------insame
 {
     resettemppoint();
@@ -141,23 +150,28 @@ void Scramble::initialize() //----------------------------Initialize
     cout << "Player name: ";
     getline(cin, name);
     p.setplayername(name);
-    cout << "Hello " << p.getplayername << " you scramble is " << myscramword << endl;
+    cout << "Hello " << p.getplayername() << " you scramble is " << myscramword << endl;
     cout << "For every letter of that scram word you use you get " << p.getdefaultpoint() << "points";
+    cout << "You get as many rounds as you want until you end it\nYour score will be the average of each round";
     cout << "\n\nGood Luck!!!";
     Util::pause();
 }
-int Scramble::main()   //*******************************MAIN
+void Scramble::main()   //*******************************MAIN
 {
+    myroundnum = 0;
+    bool end = false;
+    bool canend;
     Util::clear();
     string temp = p.getplayername();    //display info
     cout << "Scramble word" << setw(30) << right << temp;
     cout << "Your Scrambled Word is: " << myscramword << endl <<
             "Each letter the same is worth " << p.getdefaultpoint() << " points\n";
     
-    bool end = false;
+    
     while(!end) //run until all inword chars match some of scramble
     {
-        cout << "Chose a word: ";
+        canend = false;
+        cout << "Chose a word: ";       
         getline(cin, inword);
         cout << "\n\n";
         if(insame())    //If any of the characters are the same
@@ -170,8 +184,9 @@ int Scramble::main()   //*******************************MAIN
             {
                 if(inword == myd.getlimitstring(i)) //if any of the words in the temp string match you get the points
                 {
-                    end = true;
+                    canend = true;
                     p.addpoint(temppoint);
+                    myroundnum++;
                 }//end if
             }//end inword checker with limit
             if(!end)    //this displays out the user missed the word
@@ -186,8 +201,16 @@ int Scramble::main()   //*******************************MAIN
             cout << "\nA character must match the scrambled word";
             Util::pause();  //make sure the user sees the above
         }
+
+
+        
+        //END OF MAIN AREA TO CHOSE FOR RUNNING AGAIN
+
+        cout << "Your current score is now " << gettempscore() << endl;
+        char there;
+        cout << "End Game?(y/n)  ";
+        if(there == 'y' || there == 'Y') end = true;
         
         Util::clear();
     }//end while doesn't end
-    return 1;
 }

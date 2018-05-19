@@ -5,18 +5,14 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "Repo/Scramble/scramble.h"
+#include "scramble.h"
 
 int main()
 {
   Scramble game;
   game.initialize();
-  int end = 0;
-  while (end = 0) //main runnning
-  {
-    
-  }
-
+  int end = 1;
+  game.main();
 
   return 0;
 }
