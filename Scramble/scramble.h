@@ -5,12 +5,10 @@
 
 
 #include "./Dictionary/dictionary.h"
-#include "./General/utillity.h"
+//#include "./General/Utillity.h"
 #include "./Player/player.h"
 #include <string>
 #include <iostream>
-#include <iomanip>
-
 
 using namespace std;
 
@@ -59,9 +57,12 @@ private:
 //Constructors
 Scramble::Scramble()    //---------------------------default constructor
 {
+    myd.setpath("./Dictionary/Dictionary.txt");
+    myd.setword();
     myscramword = "";
     inword = "";
     resettemppoint();
+    myroundnum = 1;
 }
 
 //Private Data Manipulation
@@ -73,14 +74,20 @@ void Scramble::setPath(string path)  //------------------sets a different path v
 
 void Scramble::setscram()   //---------------------------sets scramble word to a random word
 {
-    myscramword = myd.getword();            //gets a random word
-    for(int i = 0; i < myscramword.length(); i++)   //runs through each letter
+    string tempor = myd.getword();
+    myscramword = tempor;            //gets a random word
+    int length = myscramword.length() - 1;
+    RandGen r;
+    for(int i = 0; i < length; i++)   //runs through each letter
     {
-        RandGen r;
-        myscramword[i] = myscramword[r.RandInt(myscramword.length())];
-        //debug
-        //cout << "scram word = " << myscramword << endl;
+        int rand = r.RandInt(myscramword.length());
+        char a = myscramword[i];
+        cout << a << "\n";
+        myscramword[i] = myscramword[rand];
+        myscramword[rand] = a;
+
     }
+    cout <<  tempor << " " << myscramword << endl << endl;
 }
 void Scramble::addtemppoint()       //------------------------------addtemppoint default
 {
@@ -138,6 +145,7 @@ bool Scramble::insame()   //----------------------------------------insame
 }
 void Scramble::initialize() //----------------------------Initialize
 {
+    //cout << "initialize\n";
     inword = "";
     string name;
     int total = 40;
@@ -145,31 +153,34 @@ void Scramble::initialize() //----------------------------Initialize
     total = total / myscramword.length();
     p.setdefaultpoint(total);
     cout << "Welcome to Scramble Word game by Chad Lape\n" << 
-            "The goal is to find how ever many words you can make given\na scrambled word" <<
-            "\nDouble Points for finding the original word";
+            "The goal is to find how ever many words you can make given a scrambled word" <<
+            "\nDouble Points for finding the original word\n\n";
     cout << "Player name: ";
     getline(cin, name);
     p.setplayername(name);
-    cout << "Hello " << p.getplayername() << " you scramble is " << myscramword << endl;
-    cout << "For every letter of that scram word you use you get " << p.getdefaultpoint() << "points";
+    cout << "\nHello " << p.getplayername() << ", your scrambled word is " << myscramword << endl;
+    cout << "For every letter of that scram word you use you get " << p.getdefaultpoint() << " points\n";
     cout << "You get as many rounds as you want until you end it\nYour score will be the average of each round";
     cout << "\n\nGood Luck!!!";
-    Util::pause();
+
+    //Util::pause();
 }
 void Scramble::main()   //*******************************MAIN
 {
+    cout << "startmain\n";
     myroundnum = 0;
     bool end = false;
     bool canend;
-    Util::clear();
+    //Util::clear();
     string temp = p.getplayername();    //display info
-    cout << "Scramble word" << setw(30) << right << temp;
+    cout << "Scramble word " << "          " << endl;
     cout << "Your Scrambled Word is: " << myscramword << endl <<
             "Each letter the same is worth " << p.getdefaultpoint() << " points\n";
     
     
     while(!end) //run until all inword chars match some of scramble
     {
+        cout << "a\n";
         canend = false;
         cout << "Chose a word: ";       
         getline(cin, inword);
@@ -192,14 +203,14 @@ void Scramble::main()   //*******************************MAIN
             if(!end)    //this displays out the user missed the word
             {
                 cout << "\nThe word was not found in the dictionary";
-                Util::pause();
+                //Util::pause();
             }
             resettemppoint();   //just good data management
         }//end the if chars are same
         else 
         {
             cout << "\nA character must match the scrambled word";
-            Util::pause();  //make sure the user sees the above
+            //Util::pause();  //make sure the user sees the above
         }
 
 
@@ -211,6 +222,6 @@ void Scramble::main()   //*******************************MAIN
         cout << "End Game?(y/n)  ";
         if(there == 'y' || there == 'Y') end = true;
         
-        Util::clear();
+        //Util::clear();
     }//end while doesn't end
 }

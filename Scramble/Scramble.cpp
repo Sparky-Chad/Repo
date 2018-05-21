@@ -1,14 +1,14 @@
 //Chad Lape
 //main for the scramble project
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <fstream>
 #include "scramble.h"
+#include <iostream>
 
+using namespace std;
 int main()
 {
+  cout.clear();
+  fflush(stdout);
   Scramble game;
   game.initialize();
   int end = 1;

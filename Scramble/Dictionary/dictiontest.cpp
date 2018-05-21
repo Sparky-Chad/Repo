@@ -12,6 +12,7 @@ void pause();
 int main()
 {
   Dictionary d;
+  d.setword();
   for (int i = 25; i < 256; i++)
   {
     cout << d.getword(i) << endl;

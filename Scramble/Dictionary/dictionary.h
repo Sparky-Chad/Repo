@@ -8,9 +8,6 @@
 
 #include <string>     //for the help of strings in this class
 #include <fstream>    //inputs from file, ifstream
-#include <iostream>   //monstly for debugging purposes
-#include <cstring>    //functional check of equal in letters
-#include <cstdio>     //for a few functions in cstring
 #include "randgen.h"  //for random get word
 
 using namespace std;
@@ -44,9 +41,9 @@ public:
   bool inlimit(int);
   //checks if your number is in the limit of the limited array
 private:
-  int w = 60000;
+  int w = 58112;
   //length constant for string array
-  string *myword = new string[w];
+  string *myword = new string[58112];
   //Utilized for the loading of saved words to memory and their use in the program
   string blank = "";
   //blank string
@@ -60,8 +57,8 @@ private:
 //Constructors*************************************************
 Dictionary::Dictionary()
 {
-  mypath = "Dic.txt"; //the default path to call from
-  setword();      //a default call from normall path
+  mypath = "Dictionary.txt"; //the default path to call from
+  //setword();      //a default call from normall path
 }
 Dictionary::Dictionary(string path)
 {
@@ -72,7 +69,8 @@ Dictionary::Dictionary(string path)
 //Private Data Manip******************************************
 void Dictionary::setword() //-------------------------------------------------setword
 {
-  ifstream ifile(mypath); //opens the file
+  //cout << mypath << endl;
+  ifstream ifile(mypath, ios::in); //opens the file
   string temp = "";       //temp string for use passing the string array
 
   for(int i = 0; i < w; i++)  //runs through whole array
@@ -80,12 +78,11 @@ void Dictionary::setword() //-------------------------------------------------se
     myword[i] = blank;
   }//end for
 
-  if(ifile)
+  if(ifile.is_open())
   {
     int i = 0;
-    while(!ifile.eof()) //repeats until reaching the end of the file
+    while(getline(ifile, temp)) //repeats until reaching the end of the file
     {
-      getline(ifile, temp);
       myword[i] = temp;
       //puts temp into my word
       i++;
@@ -95,7 +92,7 @@ void Dictionary::setword() //-------------------------------------------------se
   }//end if file opened
   else
   {
-    cout << "**File Fail**";
+    //cout << "**File Fail**";
   }
 }//end set word
 string Dictionary::getword(int i) //---------------------------------------------getword
@@ -124,18 +121,18 @@ void Dictionary::setlimitray(string in) //--------------------------------------
   limit = 0;
   while(in[0] != myword[i][0])
   {
-    cout << "no " << myword[i] << endl;
+    //cout << "no " << myword[i] << endl;
     i++;
 
   }
   point = i;
   while(in[0] == myword[i][0])
   {
-    cout << "yes " << myword[i] << endl;
+    //cout << "yes " << myword[i] << endl;
     limit++;
     i++;
   }
-  cout.flush();
+  //cout.flush();
 }//end set limitray
 string Dictionary::getlimitstring(int i) //------------------------------------------getlimitstring
 {
@@ -146,28 +143,6 @@ string Dictionary::getlimitstring(int i) //-------------------------------------
   }
   else return "fail";
 }
-//member functions*******************************************************
-/* Isn't needed
-bool Dictionary::equalletters(int i, string in) //---------------------------------------equalletters
-{
-  if(myword[i].length() == in.length()) //rechecks if lengths are equal
-  {
-    char cur[2][myword[i].length() + 1];      //initailizes a cstring
-    strcpy(cur[0], myword[i].c_str()); //uses cstring to make char arrays to compare raw int values of the chars
-    strcpy(cur[1], in.c_str());
-
-    int hm[2] = {0, 0};
-    int stlen = strlen(cur[0])-1;
-    for(int i = 0; i < stlen; i++)
-    {
-      hm[0] += int(cur[0][i]);  //gets the int values of the characters
-      hm[1] += int(cur[1][i]);
-    }
-    if(hm[0] == hm[1]) return true; //if the chars are the same the numbers should be equal
-    else return false;
-  }
-  return false; //if nothing else just return false
-} //end equal letters */
 bool Dictionary::equal(int i, string in) //-------------------------------------------equal`
 {
   if(myword[i] == in) return true;
