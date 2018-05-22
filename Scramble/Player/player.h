@@ -3,6 +3,9 @@
 //player.h
 //chad lape
 
+#ifndef _PLAYER_H
+#define _PLAYER_H
+
 
 #include <string>
 #include <sstream>
@@ -46,10 +49,6 @@ public:
     //default add amount of points
     void resetpoints();
     //sets points back to zero
-    string topscores(int i)
-    {
-
-    }
 private:
     string myplayername;
     string myhighscorefile;
@@ -99,7 +98,7 @@ void Player::addpoint(int in)   //----------------------------add point
 {
     mypoints += in;
 }
-int Player::getpoint()  //--------------------------------------get point
+int Player::getpoint()  //------------------------------------get point
 {
     return mypoints;
 }
@@ -121,3 +120,5 @@ void Player::resetpoints()  //--------------------------------reset point
 {
     setpoint(0);
 }
+
+#endif

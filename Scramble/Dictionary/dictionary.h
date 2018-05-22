@@ -136,12 +136,8 @@ void Dictionary::setlimitray(string in) //--------------------------------------
 }//end set limitray
 string Dictionary::getlimitstring(int i) //------------------------------------------getlimitstring
 {
-  if(inlimit(i))
-  {
-    //cout << "returning limitstring " << *(point + 1) << endl;
-    return myword[point + i];
-  }
-  else return "fail";
+  //cout << "returning limitstring " << *(point + 1) << endl;
+  return myword[point + i];
 }
 bool Dictionary::equal(int i, string in) //-------------------------------------------equal`
 {
@@ -150,9 +146,6 @@ bool Dictionary::equal(int i, string in) //-------------------------------------
 }
 bool Dictionary::inlimit(int i)  //---------------------------------------------------inlimit
 {
-  if(i < limit) {
-    return true;
-  }
-  else return false;
+  return (i < limit);
 }
 #endif
