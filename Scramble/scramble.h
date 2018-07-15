@@ -132,7 +132,7 @@ bool Scramble::insame()   //----------------------------------------insame
 {
     resettemppoint();
     //cout << "same length?**\n";
-    if(inword.length() <= myscramword.length())
+    if(true)
     {
         int inlength = inword.length();
         
@@ -239,12 +239,14 @@ void Scramble::main()   //*******************************MAIN
                 string mydword = myd.getlimitstring(i);
                 //cout << i << " for loop " << mydword <<  "\n";
                 in = myd.inlimit(i);
+                cout << i << " well " << mydword << endl;
+                cout << inword << endl;
                 if(inword == mydword) //if any of the words in the temp string match you get the points
                 {
+                    //cout << "correct";
                     canend = true;
                     total += temppoint;
                     p.resetpoints();
-                    if (inword == tempor);
                     points = total / myroundnum;
                     p.setpoint(total / myroundnum);
                     cout << "Correct!\nYou earned " << temppoint << " points at " << myroundnum << " rounds\n";
@@ -254,11 +256,11 @@ void Scramble::main()   //*******************************MAIN
                 }//end if
                 i++;
             }
-            if(!canend)    //this displays out the user missed the word
+            /*if(!canend)    //this displays out the user missed the word
             {
                 cout << "\nThe word was not found in the dictionary";
                 pause();
-            }
+            }*/
             resettemppoint();   //just good data management
         }//end the if chars are same
         else 
